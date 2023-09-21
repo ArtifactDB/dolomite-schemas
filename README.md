@@ -4,21 +4,25 @@
 [![Built Status](https://api.cirrus-ci.com/github/<USER>/dolomite-schemas.svg?branch=main)](https://cirrus-ci.com/github/<USER>/dolomite-schemas)
 [![ReadTheDocs](https://readthedocs.org/projects/dolomite-schemas/badge/?version=latest)](https://dolomite-schemas.readthedocs.io/en/stable/)
 [![Coveralls](https://img.shields.io/coveralls/github/<USER>/dolomite-schemas/main.svg)](https://coveralls.io/r/<USER>/dolomite-schemas)
-[![PyPI-Server](https://img.shields.io/pypi/v/dolomite-schemas.svg)](https://pypi.org/project/dolomite-schemas/)
 [![Conda-Forge](https://img.shields.io/conda/vn/conda-forge/dolomite-schemas.svg)](https://anaconda.org/conda-forge/dolomite-schemas)
-[![Monthly Downloads](https://pepy.tech/badge/dolomite-schemas/month)](https://pepy.tech/project/dolomite-schemas)
 [![Twitter](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&label=Twitter)](https://twitter.com/dolomite-schemas)
 -->
 
 [![Project generated with PyScaffold](https://img.shields.io/badge/-PyScaffold-005CA0?logo=pyscaffold)](https://pyscaffold.org/)
+[![PyPI-Server](https://img.shields.io/pypi/v/dolomite-schemas.svg)](https://pypi.org/project/dolomite-schemas/)
+[![Monthly Downloads](https://pepy.tech/badge/dolomite-schemas/month)](https://pepy.tech/project/dolomite-schemas)
 
-# dolomite-schemas
+# Bioconductor object schemas for Python
 
-This package provides access to the [JSON schemas](https://github.com/ArtifactDB/BiocObjectSchemas) for bioconductor objects, for use in downstream packages. It is primarily intended for the various dolomite-* python packages in the artifactdb organization.
+## Overview
+
+This package vendors the [Bioconductor object schemas](https://github.com/ArtifactDB/BiocObjectSchemas) for the **dolomite-** Python packages.
+The idea is to ensure that downstream packages have consistent access to schemas without the need for a remote look-up.
+We put this in a separate package so that schema updates are kept separate from actual programming changes.
 
 ## Installation
 
-Developers can install the package through pip.
+Developers can install the package through `pip`.
 
 ```sh
 pip install dolomite-schemas
@@ -26,19 +30,22 @@ pip install dolomite-schemas
 
 ## Usage
 
-The default assumption across all dolomite-derivatives is the package will contain a directory `schemas` to access the JSON schemas.
+Schemas are vendored into the `schemas/` subdirectory in the installation directory.
+This directory can be easily found by working back from the **dolomite-schemas** module location:
 
 ```python
-os.path.join(os.dirname(schema_pkg.__file__), "schemas")
+import dolomite_schemas
+os.path.join(os.path.dirname(dolomite_schemas.__file__), "schemas")
 ```
 
-<!-- pyscaffold-notes -->
+Application-specific schema-vendoring modules should use the same relative location for their schema subdirectory in the installation directory.
 
-## Note
+## Developer notes
 
-This project has been set up using PyScaffold 4.5. For details and usage
-information on PyScaffold see https://pyscaffold.org/.
+The schemas are not actually committed to this repository, but are instead obtained by running:
 
-```sh
-putup dolomite-schemas --markdown
+```shell
+cd extern && ./fetch.sh
 ```
+
+This can be modified to point to any relevant version of the schemas.
