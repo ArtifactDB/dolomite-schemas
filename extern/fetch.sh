@@ -5,5 +5,7 @@
 curl -L https://artifactdb.github.io/BiocObjectSchemas/bundle.tar.gz > bundle.tar.gz # for testing the latest.
 rm -rf schemas
 tar -xvf bundle.tar.gz
-mv resolved schemas
-mv schemas ../src/dolomite/schemas/
+
+dest=../src/dolomite_schemas/schemas
+rm -rf ${dest}
+mv resolved ${dest}

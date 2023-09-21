@@ -40,5 +40,5 @@ This project has been set up using PyScaffold 4.5. For details and usage
 information on PyScaffold see https://pyscaffold.org/.
 
 ```sh
-putup dolomite-schemas --package schemas --namespace dolomite --markdown
+putup dolomite-schemas --markdown
 ```
