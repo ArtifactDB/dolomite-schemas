@@ -14,9 +14,29 @@
 
 # dolomite-schemas
 
-> Add a short description here!
+This package provides access to the [JSON schemas](https://github.com/ArtifactDB/BiocObjectSchemas) for bioconductor objects, for use in downstream packages. It is primarily intended for the various dolomite-* python packages in the artifactdb organization.
 
-A longer description of your project goes here...
+## Installation
+
+Developers can install the package through pip.
+
+```sh
+pip install dolomite-schemas
+```
+
+## Usage
+
+To access the resolved schemas,
+
+```python
+from dolomite.schemas import get_schema_directory
+
+# root directory containing all schemas
+out = get_schema_directory()
+
+# To access single-cell experiment
+sce_schema_dir = os.path.join(out, "single_cell_experiment")
+```
 
 
 <!-- pyscaffold-notes -->
@@ -25,3 +45,7 @@ A longer description of your project goes here...
 
 This project has been set up using PyScaffold 4.5. For details and usage
 information on PyScaffold see https://pyscaffold.org/.
+
+```sh
+putup dolomite-schemas --package schemas --namespace dolomite --markdown
+```
