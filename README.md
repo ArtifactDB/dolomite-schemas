@@ -26,18 +26,11 @@ pip install dolomite-schemas
 
 ## Usage
 
-To access the resolved schemas,
+The default assumption across all dolomite-derivatives is the package will contain a directory `schemas` to access the JSON schemas.
 
 ```python
-from dolomite.schemas import get_schema_directory
-
-# root directory containing all schemas
-out = get_schema_directory()
-
-# To access single-cell experiment
-sce_schema_dir = os.path.join(out, "single_cell_experiment")
+os.path.join(os.dirname(schema_pkg.__file__), "schemas")
 ```
-
 
 <!-- pyscaffold-notes -->
 

@@ -13,4 +13,4 @@ def get_schema_directory() -> str:
         str: Path to a directory.
     """
     dirname = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
-    return os.path.join(dirname, "resolved")
+    return os.path.join(dirname, "schemas")
